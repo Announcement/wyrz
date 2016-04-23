@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/Announcement/wyrz/issues"
   },
-  "homepage": "https://github.com/Announcement/wyrz#readme"
+  "homepage": "https://github.com/Announcement/wyrz#readme",
+  "engines": {
+    "node": "v5.10.1"
+  },
+  "dependencies": {
+    "@kikinteractive/kik": "^2.0.2",
+    "continuation-local-storage": "^3.1.7"
+  }
 }
