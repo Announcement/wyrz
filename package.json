@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "@kikinteractive/kik": "^2.0.2",
-    "continuation-local-storage": "^3.1.7"
+    "continuation-local-storage": "^3.1.7",
+    "i18n": "^0.8.2",
+    "natural": "^0.4.0"
   }
 }
