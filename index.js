@@ -28,7 +28,7 @@ function safeLog(data) {
 
 bot.onTextMessage((message) => {
   safeLog(message);
-  if (message.body.indexOf("!logs")) {
+  if (message.body.indexOf("!logs") == 0) {
     message.reply(JSON.stringify(logs.splice(0, 5)));
   } else {
     message.reply(message.body);
