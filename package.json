@@ -1,0 +1,24 @@
+{
+  "name": "wyrz",
+  "version": "1.0.0",
+  "description": "Kik messenger bot over the wire",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Announcement/wyrz.git"
+  },
+  "keywords": [
+    "kik",
+    "messenger",
+    "bot"
+  ],
+  "author": "Jacob Francis Powers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Announcement/wyrz/issues"
+  },
+  "homepage": "https://github.com/Announcement/wyrz#readme"
+}
