@@ -2,9 +2,12 @@
 
 let util    = require('util');
 let http    = require('http');
+
 let Bot     = require('@kikinteractive/kik');
+
 let natural = require('natural');
 let i18n    = require("i18n");
+
 var logs = [];
 
 // Configure the bot API endpoint, details for your bot
@@ -24,8 +27,12 @@ function safeLog(data) {
 }
 
 bot.onTextMessage((message) => {
+  safeLog(message);
+  if (message.body.indexOf("!logs")) {
+    message.reply(JSON.stringify(logs.splice(0, 5)));
+  } else {
     message.reply(message.body);
-    safeLog(message);
+  }
 });
 
 // Set up your server and start listening
@@ -33,8 +40,8 @@ let server = http
     .createServer(bot.incoming())
     .listen(process.env.PORT || 8080);
 
-http.createServer(function(request, response) {
+/*http.createServer(function(request, response) {
   response.writeHead(200, {'Content-Type': 'application/json'})
   response.write(JSON.stringify(logs));
   response.end();
-}).listen(80);
+}).listen(80);*/
