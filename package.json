@@ -29,7 +29,7 @@
   "homepage": "https://github.com/Announcement/wyrz#readme",
 
   "engines": {
-    "node": "v5.10.1"
+    "node": "v6.1.0"
   },
 
   "dependencies": {

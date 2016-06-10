@@ -18,6 +18,7 @@ let xregexp = require("xregexp");
 let wp      = require('wordpos');*/
 
 let games   = require('./games');
+let ai     = require('./bot');
 
 // Self implmented logs since console.log is hard to access.
 var logs = [];
@@ -56,40 +57,16 @@ bot.updateBotConfiguration();
   }
 } */
 
-bot.onTextMessage((message) => {
-  // safeLog(namessage);
-  if (message.body.indexOf('!') === 0) {
-    try {
-      switch (message.body.split(/\s/g)[0].substring(1)) {
-        case 'logs':
-          message.reply(JSON.stringify(logs.splice(0, 5)));
-          break;
-        case '8ball':
-        case 'answers':
-          message.reply(games.fromRandom(games.answers));
-          break;
-        case 'questions':
-          message.reply(games.frmoRandom(games.questions));
-        default:
-
-      }
-    } catch (e) {
-      message.reply(e.toString());
-    } finally {
-      console.log('client: ' + message);
-    }
-  } else {
-    message.reply(message.body);
-  }
-});
+bot.onTextMessage(ai.txt);
 
 // Set up your server and start listening
 let server = http
     .createServer(bot.incoming())
     .listen(process.env.PORT || 8080);
-
+http.createServer(function(request, response) {
+    response.writeHead(200, {'Content-Type': 'application/json'})
+    response.write('We\'re in business!');
+    response.end();
+}).listen((parseInt(process.env.PORT + '', 10) || 8080)+ 1);
 /*http.createServer(function(request, response) {
-  response.writeHead(200, {'Content-Type': 'application/json'})
-  response.write(JSON.stringify(logs));
-  response.end();
 }).listen(80);*/
