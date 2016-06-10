@@ -79,7 +79,7 @@ questions = {
     "Would you rather feel like you were hung over for a week or not use email for a week?",
     "Would you rather win a trip to Hawaii or win a free laptop?",
     "Would you rather give up shopping for six months or give up emoji for six months?"
-  ]
+  ],
   kids: [
     "Would you rather have cookies or have French fries?",
     "Would you rather be good at sports or get good grades?",
@@ -106,6 +106,8 @@ fromRandom = function fromRandom(source) {
   return source;
 };
 
+// console.log(fromRandom(questions));
+// console.log(fromRandom(answers));
 exports.fromRandom = fromRandom;
 exports.questions = questions;
 exports.answers = answers;
