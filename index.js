@@ -61,12 +61,10 @@ bot.onTextMessage(ai.txt);
 
 // Set up your server and start listening
 let server = http
-    .createServer(bot.incoming())
+    .createServer(function(request, response){
+      console.log(request, response);
+      return bot.incoming(request, response)
+    })
     .listen(process.env.PORT || 8080);
-http.createServer(function(request, response) {
-    response.writeHead(200, {'Content-Type': 'application/json'})
-    response.write('We\'re in business!');
-    response.end();
-}).listen((parseInt(process.env.PORT + '', 10) || 8080)+ 1);
 /*http.createServer(function(request, response) {
 }).listen(80);*/
