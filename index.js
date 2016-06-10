@@ -28,6 +28,7 @@ var logs = [];
 //var wordnet = new natural.WordNet();
 
 // Configure the bot API endpoint, details for your bot
+
 let bot = new Bot({
     username: 'wyrz',
     apiKey: '162091ee-2785-4af4-b833-91dda5356ff9',
@@ -56,7 +57,7 @@ bot.updateBotConfiguration();
 } */
 
 bot.onTextMessage((message) => {
-  safeLog(namessage);
+  // safeLog(namessage);
   if (message.body.indexOf('!') === 0) {
     try {
       switch (message.body.split(/\s/g)[0].substring(1)) {
