@@ -17,7 +17,6 @@ let moment  = require("moment");
 let xregexp = require("xregexp");
 let wp      = require('wordpos');*/
 
-let games   = require('./games');
 let ai     = require('./bot');
 
 // Self implmented logs since console.log is hard to access.
@@ -61,10 +60,7 @@ bot.onTextMessage(ai.txt);
 
 // Set up your server and start listening
 let server = http
-    .createServer(function(request, response){
-      console.log(request, response);
-      return bot.incoming(request, response)
-    })
+    .createServer(bot.incoming)
     .listen(process.env.PORT || 8080);
 /*http.createServer(function(request, response) {
 }).listen(80);*/
