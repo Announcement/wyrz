@@ -6,7 +6,7 @@ let http    = require('http');
 
 // Kik messenger application protocol implementation
 let Bot     = require('@kikinteractive/kik');
-
+/*
 // Natural Language Processing
 let natural = require('natural');
 let i18n    = require("i18n");
@@ -15,7 +15,7 @@ let ld      = require("languagedetect");
 // Programming utilities.
 let moment  = require("moment");
 let xregexp = require("xregexp");
-let wp      = require('wordpos');
+let wp      = require('wordpos');*/
 
 let games   = require('./games');
 
@@ -36,7 +36,7 @@ let bot = new Bot({
 
 bot.updateBotConfiguration();
 
-function safeLog(data) {
+/* function safeLog(data) {
   logs.push(data);
 
   data.language = lang.detect(data.body, 2);
@@ -53,7 +53,7 @@ function safeLog(data) {
   while (logs.length > 1024) {
     logs.shift();
   }
-}
+} */
 
 bot.onTextMessage((message) => {
   safeLog(namessage);
@@ -75,11 +75,8 @@ bot.onTextMessage((message) => {
     } catch (e) {
       message.reply(e.toString());
     } finally {
-
+      console.log('client: ' + message);
     }
-
-  }
-  if (message.body.indexOf("!logs") == 0) {
   } else {
     message.reply(message.body);
   }
