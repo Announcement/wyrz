@@ -22,10 +22,10 @@ let games   = require('./games');
 // Self implmented logs since console.log is hard to access.
 var logs = [];
 
-var lang = new ld();
-var wordpos = new wp();
-var tokenizer = new natural.WordTokenizer();
-var wordnet = new natural.WordNet();
+//var lang = new ld();
+//var wordpos = new wp();
+//var tokenizer = new natural.WordTokenizer();
+//var wordnet = new natural.WordNet();
 
 // Configure the bot API endpoint, details for your bot
 let bot = new Bot({
