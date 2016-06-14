@@ -20,8 +20,7 @@ safely = (content) ->
   content or 'I have nothing to say.'
 
 txt = ->
-  import it
-  reply safely using body
+  it.reply safely using it.body
 
 export txt
 export safely

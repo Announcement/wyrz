@@ -31,8 +31,7 @@
     return content || 'I have nothing to say.';
   };
   txt = function(it){
-    import$(this, it);
-    return reply(safely(using(body)));
+    return it.reply(safely(using(it.body)));
   };
   out$.txt = txt;
   out$.safely = safely;
@@ -40,9 +39,4 @@
   out$.execute = execute;
   out$.controller = controller;
   out$.command = command;
-  function import$(obj, src){
-    var own = {}.hasOwnProperty;
-    for (var key in src) if (own.call(src, key)) obj[key] = src[key];
-    return obj;
-  }
 }).call(this);
