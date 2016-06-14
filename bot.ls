@@ -18,7 +18,7 @@ function vote command
 controller =
   say: (-> "#{it}")
   flip: (-> choose <[heads tails]>)
-  roll: (-> '' + util.up-to 1000000)
+  roll: (-> '' + if it then util.up-to parse-int it else util.up-to! )
   ask: ask
   tell: (-> util.from-random games.answers)
   vote: vote

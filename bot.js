@@ -26,8 +26,10 @@
     flip: function(){
       return choose(['heads', 'tails']);
     },
-    roll: function(){
-      return '' + util.upTo(1000000);
+    roll: function(it){
+      return '' + (it
+        ? util.upTo(parseInt(it))
+        : util.upTo());
     },
     ask: ask,
     tell: function(){
