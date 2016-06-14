@@ -11,6 +11,14 @@
   u = require('../util');
 
   describe('utilities', function() {
+    describe('#up-to( [number] )', function() {
+      it('should provide a random number using a recipical method', function() {
+        return expect(u.upTo()).to.not.be.below(1);
+      });
+      return it('should provide a random number up to the specified maximum', function() {
+        return expect(u.upTo(10)).to.not.be.above(10);
+      });
+    });
     return describe('#fromRandom()', function() {
       return it('should return a random value from the object structure', function() {
         return expect(u.fromRandom([['a']])).to.equal('a');
@@ -39,11 +47,14 @@
       it('should repeat whatever phrase was provided as an input', function() {
         return expect(b.using('say hi')).to.equal('hi');
       });
-      it('should roll a pair of dice and return a random number', function() {
-        return expect(b.using('roll')).to.be.a('string');
+      it('should roll a pair of dice and return a random limitless number', function() {
+        return expect(b.using('roll')).to.match(/\d+/);
+      });
+      it('should roll a pair of dice and return a random limited number', function() {
+        return expect(b.using('roll 10')).to.match(/\d+/);
       });
       it('should flip a coin landing on either heads or tails', function() {
-        return expect(b.using('flip')).to.be.a('string');
+        return expect(b.using('flip')).to.match(/(heads|tails)/);
       });
       it('should ask a completely random conversational question', function() {
         return expect(b.using('ask')).to.be.a('string');
@@ -51,8 +62,17 @@
       it('should ask a very difficult conversational question', function() {
         return expect(b.using('ask hardest')).to.be.a('string');
       });
-      it('should ask a couple orientated conversational question', function() {
+      it('should ask a couples orientated conversational question', function() {
         return expect(b.using('ask couples')).to.be.a('string');
+      });
+      it('should ask a female orientated conversational question', function() {
+        return expect(b.using('ask girls')).to.be.a('string');
+      });
+      it('should ask a technology orientated conversational question', function() {
+        return expect(b.using('ask technology')).to.be.a('string');
+      });
+      it('should ask a kids orientated conversational question', function() {
+        return expect(b.using('ask kids')).to.be.a('string');
       });
       return it('should tell you a magic eight ball style answers', function() {
         return expect(b.using('tell')).to.be.a('string');

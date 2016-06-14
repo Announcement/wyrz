@@ -2,7 +2,9 @@
 (function(){
   var fromRandom, out$ = typeof exports != 'undefined' && exports || this;
   function upTo(amount){
-    return Math.floor(Math.random() * amount);
+    return Math.floor(amount
+      ? Math.random() * amount
+      : 1 / Math.random());
   }
   fromRandom = function(source){
     var keys;
