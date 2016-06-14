@@ -5,6 +5,20 @@
   util = require('./util');
   choose = util.fromRandom;
   command = /\s*(\S+)\s*(.+)?/;
+  function ask(question){
+    if (question) {
+      if (games.questions.hasOwnProperty(question)) {
+        return util.fromRandom(games.questions[question]);
+      } else {
+        return 'Your options are ' + Object.keys(games.questions).join(', ');
+      }
+    } else {
+      return util.fromRandom(games.questions);
+    }
+  }
+  function vote(command){
+    return it + "";
+  }
   controller = {
     say: function(it){
       return it + "";
@@ -15,12 +29,11 @@
     roll: function(){
       return '' + util.upTo(1000000);
     },
-    ask: function(){
-      return util.fromRandom(games.questions);
-    },
+    ask: ask,
     tell: function(){
       return util.fromRandom(games.answers);
-    }
+    },
+    vote: vote
   };
   execute = function(command, content){
     if (controller.hasOwnProperty(command)) {

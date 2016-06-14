@@ -3,40 +3,38 @@
   "version": "1.0.0",
   "description": "Kik messenger bot over the wire",
   "main": "index.js",
-
   "scripts": {
+    "pretest": "coffee -c test/",
     "test": "mocha"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Announcement/wyrz.git"
   },
-
   "keywords": [
     "kik",
     "messenger",
     "bot"
   ],
-
   "author": "Jacob Francis Powers",
   "license": "MIT",
-
   "bugs": {
     "url": "https://github.com/Announcement/wyrz/issues"
   },
-
   "homepage": "https://github.com/Announcement/wyrz#readme",
-
   "engines": {
     "node": "v6.1.0"
   },
-
   "dependencies": {
     "@kikinteractive/kik": "^2.0.2"
   },
-
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
+    "gulp-livescript": "^3.0.1",
+    "gulp-util": "^3.0.7",
+    "livescript": "^1.5.0"
   }
 }

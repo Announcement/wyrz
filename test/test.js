@@ -45,8 +45,14 @@
       it('should flip a coin landing on either heads or tails', function() {
         return expect(b.using('flip')).to.be.a('string');
       });
-      it('should ask a conversational question', function() {
+      it('should ask a completely random conversational question', function() {
         return expect(b.using('ask')).to.be.a('string');
+      });
+      it('should ask a very difficult conversational question', function() {
+        return expect(b.using('ask hardest')).to.be.a('string');
+      });
+      it('should ask a couple orientated conversational question', function() {
+        return expect(b.using('ask couples')).to.be.a('string');
       });
       return it('should tell you a magic eight ball style answers', function() {
         return expect(b.using('tell')).to.be.a('string');
