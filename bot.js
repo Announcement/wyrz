@@ -13,7 +13,13 @@
       return choose(['heads', 'tails']);
     },
     roll: function(){
-      return util.upTo(1e6);
+      return '' + util.upTo(1000000);
+    },
+    ask: function(){
+      return util.fromRandom(games.questions);
+    },
+    tell: function(){
+      return util.fromRandom(games.answers);
     }
   };
   execute = function(command, content){

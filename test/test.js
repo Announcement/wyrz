@@ -21,18 +21,35 @@
   describe('games', function() {
     return describe('Conversation games', function() {
       it('should ask a random would you rather question of any category', function() {
-        return expect(u.fromRandom(g.questions)).to.be.an('string');
+        return expect(u.fromRandom(g.questions)).to.be.a('string');
       });
       return it('should give you a random magic 8 ball style answer', function() {
-        return expect(u.fromRandom(g.answers)).to.be.an('string');
+        return expect(u.fromRandom(g.answers)).to.be.a('string');
       });
     });
   });
 
   describe('bot', function() {
-    return describe('echo test', function() {
+    describe('echo test', function() {
       return it('should repeat whatever phrase was provided as an input', function() {
         return expect(b.using('say hi')).to.equal('hi');
+      });
+    });
+    return describe('accept commands', function() {
+      it('should repeat whatever phrase was provided as an input', function() {
+        return expect(b.using('say hi')).to.equal('hi');
+      });
+      it('should roll a pair of dice and return a random number', function() {
+        return expect(b.using('roll')).to.be.a('string');
+      });
+      it('should flip a coin landing on either heads or tails', function() {
+        return expect(b.using('flip')).to.be.a('string');
+      });
+      it('should ask a conversational question', function() {
+        return expect(b.using('ask')).to.be.a('string');
+      });
+      return it('should tell you a magic eight ball style answers', function() {
+        return expect(b.using('tell')).to.be.a('string');
       });
     });
   });
