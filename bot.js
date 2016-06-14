@@ -45,7 +45,7 @@
   using = function(message){
     var that;
     if (that = message.match(command)) {
-      return execute(that[1], that[2]);
+      return execute(that[1].toLowerCase(), that[2]);
     }
   };
   safely = function(content){

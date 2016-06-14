@@ -28,7 +28,7 @@ execute = (command, content) ->
     controller[command] content
 
 using = (message) ->
-  execute(that.1, that.2) if message.match command
+  execute(that.1.to-lower-case!, that.2) if message.match command
 
 safely = (content) ->
   content or 'I have nothing to say.'
