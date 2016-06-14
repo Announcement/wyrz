@@ -1,5 +1,6 @@
-function up-to amount
-  Math.floor(if amount then Math.random! * amount else 1 / Math.random!)
+function up-to
+  random = Math.random!
+  Math.floor(if it then random * it else Number.MAX_SAFE_INTEGER * random)
 
 from-random = (source) ->
   if source.constructor is Array then
