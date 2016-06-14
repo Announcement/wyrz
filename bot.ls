@@ -13,7 +13,14 @@ function ask question
     util.from-random games.questions
 
 function vote command
-  "#{it}"
+  if command.index-of('on') !== -1 then
+    global.vote-tally = {yes: 0, no: 0}
+  else if command.index-of('off') !== -1 and global.vote-tally? then
+    for own let key, value of global.vote-tally when value > 0
+      key + ' = ' + value
+  else if global.vote-tally? then
+    lower = command.to-lower-case!
+    global.vote-tally[lower] = (global.vote-tally[lower] or 1)
 
 controller =
   say: (-> "#{it}")
