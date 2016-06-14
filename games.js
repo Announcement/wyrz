@@ -94,20 +94,9 @@ questions = {
   ],
 }
 
-fromRandom = function fromRandom(source) {
-  if (source.constructor === Array) {
-    return fromRandom(source[Math.floor(Math.random() * source.length)]);
-  }
-  if (typeof source === 'object') {
-    var keys;
-    keys = Object.keys(source);
-    return fromRandom(source[keys[Math.floor(Math.random() * keys.length)]]);
-  }
-  return source;
-};
 
 // console.log(fromRandom(questions));
 // console.log(fromRandom(answers));
-exports.fromRandom = fromRandom;
+
 exports.questions = questions;
 exports.answers = answers;

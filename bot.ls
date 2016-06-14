@@ -1,0 +1,31 @@
+require! <[./games ./util]>
+
+choose = util.from-random
+command = /\s*(\S+)\s*(.+)?/
+
+
+controller =
+  say: (-> "#{it}")
+  flip: (-> choose <[heads tails]>)
+  roll: (-> util.up-to 1e6)
+
+execute = (command, content) ->
+  if controller.has-own-property command then
+    controller[command] content
+
+using = (message) ->
+  execute(that.1, that.2) if message.match command
+
+safely = (content) ->
+  content or 'I have nothing to say.'
+
+txt = ->
+  import it
+  reply safely using body
+
+export txt
+export safely
+export using
+export execute
+export controller
+export command
