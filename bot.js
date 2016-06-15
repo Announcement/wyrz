@@ -34,9 +34,9 @@
         }
         return results$;
         function fn$(key, value){
-          return key + ' = ' + value;
+          return key + (" has " + value + " votes");
         }
-      }.call(this))].join('\n');
+      }.call(this))].join(', ');
     } else if (global.voteTally != null && command != null) {
       lower = command.toLowerCase();
       global.voteTally[lower] = (global.voteTally[lower] || 0) + 1;

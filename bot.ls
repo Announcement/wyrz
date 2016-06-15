@@ -18,7 +18,7 @@ function vote command
     'starting a vote'
   else if command.index-of('off') !== -1 and global.vote-tally? then
     [for own let key, value of global.vote-tally when value > 0
-      key + ' = ' + value].join '\n'
+      key + " has #{value} votes"].join ', '
   else if global.vote-tally? and command? then
     lower = command.to-lower-case!
     global.vote-tally[lower] = (global.vote-tally[lower] or 0) + 1
