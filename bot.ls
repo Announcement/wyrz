@@ -15,13 +15,16 @@ function ask question
 function vote command
   if command.index-of('on') !== -1 then
     global.vote-tally = {yes: 0, no: 0}
+    'starting a vote'
   else if command.index-of('off') !== -1 and global.vote-tally? then
-    for own let key, value of global.vote-tally when value > 0
-      key + ' = ' + value
-  else if global.vote-tally? then
+    [for own let key, value of global.vote-tally when value > 0
+      key + ' = ' + value].join '\n'
+  else if global.vote-tally? and command? then
     lower = command.to-lower-case!
     global.vote-tally[lower] = (global.vote-tally[lower] or 1)
-
+    "#{lower} now has #{global.vote-tally[lower]} votes"
+  else
+    'say "vote on" to start a vote, "vote off" to tally up a vote and "vote yes" or "vote no" to cast your ballot.'
 controller =
   say: (-> "#{it}")
   flip: (-> choose <[heads tails]>)
