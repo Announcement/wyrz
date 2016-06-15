@@ -21,7 +21,7 @@ function vote command
       key + ' = ' + value].join '\n'
   else if global.vote-tally? and command? then
     lower = command.to-lower-case!
-    global.vote-tally[lower] = (global.vote-tally[lower] or 1)
+    global.vote-tally[lower] = (global.vote-tally[lower] or 0) + 1
     "#{lower} now has #{global.vote-tally[lower]} votes"
   else
     'say "vote on" to start a vote, "vote off" to tally up a vote and "vote yes" or "vote no" to cast your ballot.'

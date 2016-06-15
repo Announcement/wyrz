@@ -39,7 +39,7 @@
       }.call(this))].join('\n');
     } else if (global.voteTally != null && command != null) {
       lower = command.toLowerCase();
-      global.voteTally[lower] = global.voteTally[lower] || 1;
+      global.voteTally[lower] = (global.voteTally[lower] || 0) + 1;
       return lower + " now has " + global.voteTally[lower] + " votes";
     } else {
       return 'say "vote on" to start a vote, "vote off" to tally up a vote and "vote yes" or "vote no" to cast your ballot.';
