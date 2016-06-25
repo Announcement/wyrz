@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "coffee -c test/",
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "gulp-coffee": "^2.3.2",
     "gulp-livescript": "^3.0.1",
     "gulp-util": "^3.0.7",
-    "livescript": "^1.5.0"
+    "livescript": "^1.5.0",
+    "mocha": "^2.5.3"
   }
 }
