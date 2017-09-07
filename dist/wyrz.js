@@ -43,5 +43,9 @@ bot.onTextMessage(brain.onTextMessage);
 
 httpd = http.createServer(bot.incoming());
 
+http.on('request', (request, response) => {
+  console.log(request.url);
+});
+
 httpd.listen(process.env.PORT || 8080);
 //# sourceMappingURL=wyrz.js.map
