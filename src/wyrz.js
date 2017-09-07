@@ -2,8 +2,8 @@ import util from 'util'
 import http from 'http'
 
 import * as Bot from '@kikinteractive/kik'
-import express from 'express'
-import Socket from 'socket.io'
+// import express from 'express'
+// import Socket from 'socket.io'
 
 import Brain from './brain'
 
