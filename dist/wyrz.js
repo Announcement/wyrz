@@ -74,8 +74,8 @@ var httpd = http.Server(bot);
 var io = Socket(httpd);
 
 httpd.on('request', function (request, response) {
-  if (request.url.indexOf('/incoming') === -1) {
-    app(request, response);
+  if (!response.finished) {
+    app.call(httpd, request, response);
   }
 });
 
