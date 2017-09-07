@@ -44,10 +44,10 @@ bot.onTextMessage(brain.onTextMessage);
 httpd = http.createServer(bot.incoming());
 
 httpd.on('request', (request, response) => {
-  console.log(request.url);
+  console.log(request.url, response.finished);
 });
 
 httpd.listen(process.env.PORT || 8080, function () {
-  console.log(httpd.address());
+  console.log(httpd.address().port, httpd.remoteAddress);
 });
 //# sourceMappingURL=wyrz.js.map
