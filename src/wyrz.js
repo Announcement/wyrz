@@ -26,7 +26,11 @@ const io = Socket(httpd)
 
 httpd.on('request', (request, response) => {
   if (!response.finished) {
-    app.call(httpd, request, response)
+    try {
+      app.call(httpd, request, response)
+    } catch (exception) {
+      console.log(exception)
+    }
   }
 })
 
