@@ -6,6 +6,7 @@ var util = _interopDefault(require('util'));
 var http = _interopDefault(require('http'));
 var Bot = require('@kikinteractive/kik');
 var express = _interopDefault(require('express'));
+var Socket = _interopDefault(require('socket.io'));
 
 class Brain {
   constructor() {}
@@ -28,6 +29,7 @@ let brain;
 let bot;
 let httpd;
 let app;
+let io;
 
 configuration = {};
 
@@ -41,11 +43,17 @@ brain = new Brain();
 bot = new Bot(configuration.kik);
 app = express();
 
-bot.updateBotConfiguration();
-bot.onTextMessage(brain.onTextMessage);
-app.use(express.static('public'));
-
 httpd = http.createServer();
+io = Socket(httpd);
+
+bot.updateBotConfiguration();
+
+bot.onTextMessage(it => {
+  it.reply(it.body);
+  io.emit(it.body);
+});
+
+app.use(express.static('public'));
 
 httpd.on('request', (request, response) => {
   bot.incoming().call(httpd, request, response);

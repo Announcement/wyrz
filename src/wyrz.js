@@ -3,6 +3,7 @@ import http from 'http'
 
 import * as Bot from '@kikinteractive/kik'
 import express from 'express'
+import Socket from 'socket.io'
 
 import Brain from './brain'
 
@@ -11,6 +12,7 @@ let brain
 let bot
 let httpd
 let app
+let io
 
 configuration = {}
 
@@ -24,11 +26,18 @@ brain = new Brain()
 bot = new Bot(configuration.kik)
 app = express()
 
+httpd = http.createServer()
+io = Socket(httpd)
+
 bot.updateBotConfiguration()
-bot.onTextMessage(brain.onTextMessage)
+
+bot.onTextMessage(it => {
+  it.reply(it.body)
+  io.emit(it.body)
+})
+
 app.use(express.static('public'))
 
-httpd = http.createServer()
 
 httpd.on('request', (request, response) => {
   bot.incoming().call(httpd, request, response)
