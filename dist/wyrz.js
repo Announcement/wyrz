@@ -50,7 +50,7 @@ bot.updateBotConfiguration();
 
 bot.onTextMessage(it => {
   it.reply(it.body);
-  io.emit(it.body);
+  io.emit('message', it.body);
 });
 
 app.use(express.static('public'));
