@@ -6,59 +6,28 @@ var util = _interopDefault(require('util'));
 var http = _interopDefault(require('http'));
 var Bot = require('@kikinteractive/kik');
 
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
+class Brain {
+  constructor() {}
 
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
+  process(content, callback) {
+    callback(content);
   }
 
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-var Brain = function () {
-  function Brain() {
-    classCallCheck(this, Brain);
+  onTextMessage(message) {
+    message.reply(message.body);
   }
 
-  createClass(Brain, [{
-    key: "process",
-    value: function process(content, callback) {
-      callback(content);
-    }
-  }, {
-    key: "onTextMessage",
-    value: function onTextMessage(message) {
-      message.reply(message.body);
-    }
-  }, {
-    key: "socketMessage",
-    value: function socketMessage(message, socket) {
-      socket.emit(message);
-    }
-  }]);
-  return Brain;
-}();
+  socketMessage(message, socket) {
+    socket.emit(message);
+  }
+}
 
-// import express from 'express'
-// import Socket from 'socket.io'
+let configuration;
+let brain;
+let bot;
+let httpd;
 
-var brain = new Brain();
-var configuration = {};
+configuration = {};
 
 configuration.kik = {
   username: 'wyrz',
@@ -66,30 +35,13 @@ configuration.kik = {
   baseUrl: 'https://wyrz.herokuapp.com/'
 };
 
-var bot = new Bot(configuration.kik);
+brain = new Brain();
+bot = new Bot(configuration.kik);
+
 bot.updateBotConfiguration();
 bot.onTextMessage(brain.onTextMessage);
 
-// const app = express()
-var httpd = http.createServer(bot.incoming());
-// const io = Socket(httpd)
-//
-// httpd.on('request', (request, response) => {
-//   if (!response.finished) {
-//     try {
-//       app.call(httpd, request, response)
-//     } catch (exception) {
-//       console.log(exception)
-//     }
-//   }
-// })
-//
-// io.on('connection', socket => {
-//   socket.on('message', data => {
-//     brain.socketMessage(data, socket, io)
-//   })
-// })
-//
-// app.use(express.static('public'))
+httpd = http.createServer(bot.incoming());
+
 httpd.listen(process.env.PORT || 8080);
 //# sourceMappingURL=wyrz.js.map
