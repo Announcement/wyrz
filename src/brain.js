@@ -8,11 +8,11 @@ class Brain {
   }
 
   onTextMessage (message) {
-    this.process(message.body, message.reply)
+    message.reply(message.body)
   }
 
   socketMessage (message, socket) {
-    this.process(message, socket.emit)
+    socket.emit(message)
   }
 }
 

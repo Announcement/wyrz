@@ -18,7 +18,7 @@ configuration.kik = {
 
 let bot = new Bot(configuration.kik)
 bot.updateBotConfiguration()
-bot.onTextMessage(it => brain.onTextMessage(it))
+bot.onTextMessage(brain.onTextMessage)
 
 // const app = express()
 const httpd = http.createServer(bot.incoming())

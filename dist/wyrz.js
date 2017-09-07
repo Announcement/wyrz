@@ -43,12 +43,12 @@ var Brain = function () {
   }, {
     key: "onTextMessage",
     value: function onTextMessage(message) {
-      this.process(message.body, message.reply);
+      message.reply(message.body);
     }
   }, {
     key: "socketMessage",
     value: function socketMessage(message, socket) {
-      this.process(message, socket.emit);
+      socket.emit(message);
     }
   }]);
   return Brain;
@@ -68,9 +68,7 @@ configuration.kik = {
 
 var bot = new Bot(configuration.kik);
 bot.updateBotConfiguration();
-bot.onTextMessage(function (it) {
-  return brain.onTextMessage(it);
-});
+bot.onTextMessage(brain.onTextMessage);
 
 // const app = express()
 var httpd = http.createServer(bot.incoming());
