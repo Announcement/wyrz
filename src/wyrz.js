@@ -24,9 +24,10 @@ bot = new Bot(configuration.kik)
 bot.updateBotConfiguration()
 bot.onTextMessage(brain.onTextMessage)
 
-httpd = http.createServer(bot.incoming())
+httpd = http.createServer()
 
 httpd.on('request', (request, response) => {
+  bot.incoming().call(httpd, request, response)
   console.log(request.url, response.finished)
 })
 
