@@ -4,7 +4,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var util = _interopDefault(require('util'));
 var http = _interopDefault(require('http'));
-require('@kikinteractive/kik');
+var Bot = require('@kikinteractive/kik');
 var express = _interopDefault(require('express'));
 var Socket = _interopDefault(require('socket.io'));
 
@@ -57,9 +57,17 @@ var Brain = function () {
 }();
 
 var brain = new Brain();
-// bot.kik = new Bot(configuration.kik)
-// bot.kik.updateBotConfiguration()
-// bot.kik.onTextMessage(brain.onTextMessage)
+var configuration = {};
+
+configuration.kik = {
+  username: 'wyrz',
+  apiKey: '162091ee-2785-4af4-b833-91dda5356ff9',
+  baseUrl: 'https://wyrz.herokuapp.com/kik/'
+};
+
+var bot = new Bot(configuration.kik);
+bot.updateBotConfiguration();
+bot.onTextMessage(brain.onTextMessage);
 
 var app = express();
 var httpd = http.Server(app);
@@ -71,7 +79,7 @@ io.on('connection', function (socket) {
   });
 });
 
-// app.use('/kik', bot.kik)
+app.use('/kik', bot);
 app.use(express.static('public'));
 httpd.listen(process.env.PORT || 8080);
 //# sourceMappingURL=wyrz.js.map
