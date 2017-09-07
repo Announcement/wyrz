@@ -2,6 +2,7 @@ import util from 'util'
 import http from 'http'
 
 import * as Bot from '@kikinteractive/kik'
+import express from 'express'
 
 import Brain from './brain'
 
@@ -9,6 +10,7 @@ let configuration
 let brain
 let bot
 let httpd
+let app
 
 configuration = {}
 
@@ -20,15 +22,20 @@ configuration.kik = {
 
 brain = new Brain()
 bot = new Bot(configuration.kik)
+app = express()
 
 bot.updateBotConfiguration()
 bot.onTextMessage(brain.onTextMessage)
+app.use(express.static('public'))
 
 httpd = http.createServer()
 
 httpd.on('request', (request, response) => {
   bot.incoming().call(httpd, request, response)
-  console.log(request.url, response.finished)
+
+  if (response.url.indexOf('/incoming') !== 0) {
+    app.call(httpd, request, response)
+  }
 })
 
 httpd.listen(process.env.PORT || 8080, function () {
