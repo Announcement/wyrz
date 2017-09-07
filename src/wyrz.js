@@ -26,7 +26,7 @@ const io = Socket(httpd)
 
 httpd.on('request', (request, response) => {
   if (request.url.indexOf('/incoming') === -1) {
-    express(request, response)
+    app(request, response)
   }
 })
 

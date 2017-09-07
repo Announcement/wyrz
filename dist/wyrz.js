@@ -75,7 +75,7 @@ var io = Socket(httpd);
 
 httpd.on('request', function (request, response) {
   if (request.url.indexOf('/incoming') === -1) {
-    express(request, response);
+    app(request, response);
   }
 });
 
