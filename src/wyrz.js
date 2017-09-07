@@ -30,6 +30,6 @@ io.on('connection', socket => {
   })
 })
 
-app.use('/kik', bot.kik)
+app.use('/kik', bot)
 app.use(express.static('public'))
 httpd.listen(process.env.PORT || 8080)
