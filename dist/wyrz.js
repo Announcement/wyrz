@@ -68,7 +68,9 @@ configuration.kik = {
 
 var bot = new Bot(configuration.kik);
 bot.updateBotConfiguration();
-bot.onTextMessage(brain.onTextMessage);
+bot.onTextMessage(function (it) {
+  return brain.onTextMessage(it);
+});
 
 var app = express();
 var httpd = http.createServer(bot.incoming());
