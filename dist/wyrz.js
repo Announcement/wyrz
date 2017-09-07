@@ -62,7 +62,7 @@ var configuration = {};
 configuration.kik = {
   username: 'wyrz',
   apiKey: '162091ee-2785-4af4-b833-91dda5356ff9',
-  baseUrl: 'https://wyrz.herokuapp.com/kik/'
+  baseUrl: 'https://wyrz.herokuapp.com/'
 };
 
 var bot = new Bot(configuration.kik);
@@ -70,8 +70,14 @@ bot.updateBotConfiguration();
 bot.onTextMessage(brain.onTextMessage);
 
 var app = express();
-var httpd = http.Server(app);
+var httpd = http.Server(bot);
 var io = Socket(httpd);
+
+httpd.on('request', function (request, response) {
+  if (request.url.indexOf('/incoming') === -1) {
+    express(request, response);
+  }
+});
 
 io.on('connection', function (socket) {
   socket.on('message', function (data) {
@@ -79,7 +85,7 @@ io.on('connection', function (socket) {
   });
 });
 
-app.use('/kik', bot);
+// app.use('/kik', bot)
 app.use(express.static('public'));
 httpd.listen(process.env.PORT || 8080);
 //# sourceMappingURL=wyrz.js.map
