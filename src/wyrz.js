@@ -21,7 +21,7 @@ bot.updateBotConfiguration()
 bot.onTextMessage(brain.onTextMessage)
 
 const app = express()
-const httpd = http.Server(bot)
+const httpd = http.createServer(bot.incoming())
 const io = Socket(httpd)
 
 httpd.on('request', (request, response) => {

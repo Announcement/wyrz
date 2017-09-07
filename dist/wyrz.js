@@ -70,12 +70,16 @@ bot.updateBotConfiguration();
 bot.onTextMessage(brain.onTextMessage);
 
 var app = express();
-var httpd = http.Server(bot);
+var httpd = http.createServer(bot.incoming());
 var io = Socket(httpd);
 
 httpd.on('request', function (request, response) {
   if (!response.finished) {
-    app.call(httpd, request, response);
+    try {
+      app.call(httpd, request, response);
+    } catch (exception) {
+      console.log(exception);
+    }
   }
 });
 
@@ -85,7 +89,6 @@ io.on('connection', function (socket) {
   });
 });
 
-// app.use('/kik', bot)
 app.use(express.static('public'));
 httpd.listen(process.env.PORT || 8080);
 //# sourceMappingURL=wyrz.js.map
