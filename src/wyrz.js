@@ -22,23 +22,23 @@ bot.onTextMessage(brain.onTextMessage)
 
 const app = express()
 const httpd = http.createServer(bot.incoming())
-const io = Socket(httpd)
-
-httpd.on('request', (request, response) => {
-  if (!response.finished) {
-    try {
-      app.call(httpd, request, response)
-    } catch (exception) {
-      console.log(exception)
-    }
-  }
-})
-
-io.on('connection', socket => {
-  socket.on('message', data => {
-    brain.socketMessage(data, socket, io)
-  })
-})
-
-app.use(express.static('public'))
+// const io = Socket(httpd)
+//
+// httpd.on('request', (request, response) => {
+//   if (!response.finished) {
+//     try {
+//       app.call(httpd, request, response)
+//     } catch (exception) {
+//       console.log(exception)
+//     }
+//   }
+// })
+//
+// io.on('connection', socket => {
+//   socket.on('message', data => {
+//     brain.socketMessage(data, socket, io)
+//   })
+// })
+//
+// app.use(express.static('public'))
 httpd.listen(process.env.PORT || 8080)

@@ -6,7 +6,7 @@ var util = _interopDefault(require('util'));
 var http = _interopDefault(require('http'));
 var Bot = require('@kikinteractive/kik');
 var express = _interopDefault(require('express'));
-var Socket = _interopDefault(require('socket.io'));
+var socket_io = _interopDefault(require('socket.io'));
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -71,24 +71,24 @@ bot.onTextMessage(brain.onTextMessage);
 
 var app = express();
 var httpd = http.createServer(bot.incoming());
-var io = Socket(httpd);
-
-httpd.on('request', function (request, response) {
-  if (!response.finished) {
-    try {
-      app.call(httpd, request, response);
-    } catch (exception) {
-      console.log(exception);
-    }
-  }
-});
-
-io.on('connection', function (socket) {
-  socket.on('message', function (data) {
-    brain.socketMessage(data, socket, io);
-  });
-});
-
-app.use(express.static('public'));
+// const io = Socket(httpd)
+//
+// httpd.on('request', (request, response) => {
+//   if (!response.finished) {
+//     try {
+//       app.call(httpd, request, response)
+//     } catch (exception) {
+//       console.log(exception)
+//     }
+//   }
+// })
+//
+// io.on('connection', socket => {
+//   socket.on('message', data => {
+//     brain.socketMessage(data, socket, io)
+//   })
+// })
+//
+// app.use(express.static('public'))
 httpd.listen(process.env.PORT || 8080);
 //# sourceMappingURL=wyrz.js.map
