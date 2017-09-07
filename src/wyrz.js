@@ -16,9 +16,9 @@ configuration.kik = {
   baseUrl: 'https://wyrz.herokuapp.com/kik/'
 }
 
-// bot.kik = new Bot(configuration.kik)
-// bot.kik.updateBotConfiguration()
-// bot.kik.onTextMessage(brain.onTextMessage)
+let bot = new Bot(configuration.kik)
+bot.updateBotConfiguration()
+bot.onTextMessage(brain.onTextMessage)
 
 const app = express()
 const httpd = http.Server(app)
@@ -30,6 +30,6 @@ io.on('connection', socket => {
   })
 })
 
-// app.use('/kik', bot.kik)
+app.use('/kik', bot.kik)
 app.use(express.static('public'))
 httpd.listen(process.env.PORT || 8080)
