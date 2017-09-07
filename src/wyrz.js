@@ -42,7 +42,7 @@ app.use(express.static('public'))
 httpd.on('request', (request, response) => {
   bot.incoming().call(httpd, request, response)
 
-  if (request.url.indexOf('/incoming') !== 0) {
+  if (request.url.indexOf('/incoming') !== 0 && request.url.indexOf('/socket.io') !== -1) {
     app.call(httpd, request, response)
   }
 })
