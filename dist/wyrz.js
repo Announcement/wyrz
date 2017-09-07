@@ -5,8 +5,6 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var util = _interopDefault(require('util'));
 var http = _interopDefault(require('http'));
 var Bot = require('@kikinteractive/kik');
-var express = _interopDefault(require('express'));
-var socket_io = _interopDefault(require('socket.io'));
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -55,6 +53,9 @@ var Brain = function () {
   }]);
   return Brain;
 }();
+
+// import express from 'express'
+// import Socket from 'socket.io'
 
 var brain = new Brain();
 var configuration = {};
