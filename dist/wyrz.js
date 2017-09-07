@@ -72,7 +72,7 @@ bot.onTextMessage(function (it) {
   return brain.onTextMessage(it);
 });
 
-var app = express();
+// const app = express()
 var httpd = http.createServer(bot.incoming());
 // const io = Socket(httpd)
 //
